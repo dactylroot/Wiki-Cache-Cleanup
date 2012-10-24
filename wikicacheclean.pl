@@ -11,13 +11,13 @@ open(my $INFILE, $filename) or die $!;
 open(my $OUTFILE, '>', 'out.txt');
 for $line (<$INFILE>)
 {
-	$line =~ s/\<\/*span.*?\>//g;                   # remove <span> tags
+    $line =~ s/\<\/*span.*?\>//g;                   # remove <span> tags
     $line =~ s/\<\/*p.*?\>//g;                      # remove <p> tags
-	$line =~ s/\[\[.*?edit\]\]//g;                  # remove EDIT links
+    $line =~ s/\[\[.*?edit\]\]//g;                  # remove EDIT links
                                                     # convert internal links
-	$line =~ s/(\[htt\S*$oldwikiname\S* )([^\]]+\])/\[\[$2\]/g;
-	$line =~ s/(\[htt\S* \])//g;                    # remove external links with no title
-	#$line =~ s/[^\n\*]\*([^\*])/\n\*$1/g;           # list items on new lines
+    $line =~ s/(\[htt\S*$oldwikiname\S* )([^\]]+\])/\[\[$2\]/g;
+    $line =~ s/(\[htt\S* \])//g;                    # remove external links with no title
+    #$line =~ s/[^\n\*]\*([^\*])/\n\*$1/g;           # list items on new lines
     
     $line =~ s/^\'\'([^\'])/<i>$1/g;                # blockquote formatting
     $line =~ s/([^\'])\'\'$/$1<\/i>/g;
@@ -32,7 +32,7 @@ for $line (<$INFILE>)
         $line =~ s/(\s)$linkname(\s)/$1\[\[$linkname\]\]$2/g;
     }
     
-	print $OUTFILE $line;
+    print $OUTFILE $line;
 }
 close($INFILE);
 close($OUTFILE);
